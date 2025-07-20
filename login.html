@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Srishti IT Login/Register</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+                  url('back5.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .logo {
+      margin-top: 20px;
+    }
+
+    .logo img {
+      width: 160px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+      margin-top: 10px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: 1px solid white;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .glass-form {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      color: white;
+    }
+
+    .glass-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .glass-form input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    .glass-form .options {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .glass-form button {
+      width: 100%;
+      padding: 10px;
+      background: #00ffcc;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .glass-form p {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .glass-form a {
+      color: #00ffcc;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    section {
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      margin: 50px auto;
+      padding: 30px;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    section h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #00ffcc;
+      padding-bottom: 10px;
+    }
+
+    section ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    section ul li {
+      padding: 8px 0;
+      font-size: 16px;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffffcc;
+      color: black;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      display: none;
+      z-index: 9999;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="logo.png" alt="Srishti IT Education Logo">
+  </div>
+
+  <div class="popup" id="popupSuccess">
+    <h3>✅ Registration Successful!</h3>
+    <p>Thank you for registering with Srishti IT Education 🎓</p>
+  </div>
+
+  <div class="container">
+    <div class="nav">
+      <span><strong style="font-size: 19px;"><span style="color: #007bff;">Srishti</span> <span style="color: #28a745;">IT</span> <span style="color: #ffc107;">Education</span></strong></span>
+      <ul>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><button class="nav-btn" id="loginToggle">Login</button></li>
+      </ul>
+    </div>
+
+    <div class="glass-form">
+      <form id="loginForm">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <div class="options">
+          <label><input type="checkbox"> Remember me</label>
+          <a id="forgotPassword">Forgot Password?</a>
+        </div>
+        <button type="submit">Login</button>
+        <p>Don’t have an account? <a href="#" id="showRegister">Register</a></p>
+      </form>
+
+      <form id="registerForm" style="display:none;">
+        <h2>Register</h2>
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Create Password" required>
+        <input type="tel" id="phone" placeholder="Phone" required>
+        <input type="text" id="course" placeholder="Course Name" required>
+        <button type="submit">Submit</button>
+        <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+      </form>
+    </div>
+  </div>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p><strong>Srishti IT Education</strong> is dedicated to providing high-quality, affordable computer education to students and professionals. Our mission is to empower individuals with practical digital skills, recognized certifications, and the confidence to build their careers independently through online and offline support.</p>
+    <ul>
+      <li>🎯 Our Vision: Digital India through Affordable IT Education</li>
+      <li>🏆 100% Practical Courses + Government Style Certificates</li>
+      <li>📚 Live Classes, Support, & Lifetime Guidance</li>
+    </ul>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>💻 Online Computer Training</li>
+      <li>📜 Certificate Courses (ADCA, DCA, Tally, Excel)</li>
+      <li>🌐 Web Design & Development Coaching</li>
+      <li>👨‍🏫 Personalized Live Classes + Lifetime Support</li>
+      <li>📈 Job & Freelancing Preparation</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p><strong>Website:</strong> <a href="https://siei.edug.in" target="_blank">siei.edug.in</a></p>
+    <p><strong>WhatsApp:</strong> +91-7668098775</p>
+    <p><strong>Location:</strong> Indra Colony, Sainik Dwar 1, Bulandshahr, UP</p>
+  </section>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    document.getElementById("showRegister").addEventListener("click", (e) => {
+      e.preventDefault();
+      loginForm.style.display = "none";
+      registerForm.style.display = "block";
+    });
+
+    document.getElementById("showLogin").addEventListener("click", (e) => {
+      e.preventDefault();
+      loginForm.style.display = "block";
+      registerForm.style.display = "none";
+    });
+
+    document.getElementById("registerForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const data = new FormData();
+      data.append("name", document.getElementById("name").value);
+      data.append("email", document.getElementById("email").value);
+      data.append("password", document.getElementById("password").value);
+      data.append("phone", document.getElementById("phone").value);
+      data.append("course", document.getElementById("course").value);
+
+      fetch("https://script.google.com/macros/s/AKfycbwtwdHjgsAni6q10V_lN7Azg9jEH-I2jMD8t77e42YCO20t12CMfAXpNVxDuKfFPFyP/exec", {
+        method: "POST",
+        body: data
+      }).then(res => {
+        if (res.ok) {
+          document.getElementById("registerForm").reset();
+          const popup = document.getElementById("popupSuccess");
+          popup.style.display = "block";
+          setTimeout(() => popup.style.display = "none", 4000);
+        } else {
+          alert("Error submitting form.");
+        }
+      });
+    });
+
+    // Forgot Password Safe Message
+    document.getElementById("forgotPassword").addEventListener("click", function() {
+      alert("Please contact admin at +91-7668098775 or visit https://siei.edug.in to reset your password securely.");
+    });
+  </script>
+
+</body>
+</html>
